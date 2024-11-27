@@ -92,3 +92,45 @@ The **Virtual DOM (Document Object Model)** is a lightweight, in-memory represen
 Think of the Virtual DOM as a draft copy of a document. Instead of erasing and rewriting parts of the original (real DOM), you make edits to the draft (Virtual DOM), compare it with the previous version, and only change the necessary parts of the original document.
 
 In summary, the Virtual DOM is a key part of React's performance strategy, enabling fast, efficient, and predictable UI updates.
+
+#### 3. Explain React life cycles
+React lifecycle methods are special methods that are triggered at different phases of a React component's lifecycle. They allow developers to hook into and execute code during a component's birth, update, and death phases.
+
+### React Lifecycle Phases:
+1. **Mounting (Component Creation)**:
+   - Occurs when a component is being created and inserted into the DOM.
+   - Methods:
+     - **`constructor`**: Initializes state and binds methods.
+     - **`static getDerivedStateFromProps`**: Synchronizes state with props before rendering.
+     - **`render`**: Renders the JSX to the DOM.
+     - **`componentDidMount`**: Runs after the component is mounted, suitable for side effects like API calls.
+
+2. **Updating (Re-rendering)**:
+   - Happens when a component's state or props change, causing a re-render.
+   - Methods:
+     - **`static getDerivedStateFromProps`**: Updates state based on new props.
+     - **`shouldComponentUpdate`**: Determines if re-rendering is necessary for performance optimization.
+     - **`render`**: Updates the DOM with the new data.
+     - **`getSnapshotBeforeUpdate`**: Captures some state or DOM information before the changes are applied.
+     - **`componentDidUpdate`**: Runs after the component has been updated, useful for handling side effects.
+
+3. **Unmounting (Component Removal)**:
+   - Triggered when a component is removed from the DOM.
+   - Method:
+     - **`componentWillUnmount`**: Used for cleanup (e.g., removing timers, listeners).
+
+4. **Error Handling**:
+   - Handles errors in the component tree.
+   - Methods:
+     - **`static getDerivedStateFromError`**: Updates state to render a fallback UI during an error.
+     - **`componentDidCatch`**: Logs error details or handles side effects when an error occurs.
+
+### Modern React Approach:
+With React Hooks, functional components also have lifecycle capabilities using:
+- **`useEffect`**: Combines `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` functionalities.
+- **`useState`** and other hooks help manage state and side effects declaratively.
+
+### Diagram Summary:
+1. **Mounting**: `constructor` → `getDerivedStateFromProps` → `render` → `componentDidMount`
+2. **Updating**: `getDerivedStateFromProps` → `shouldComponentUpdate` → `render` → `getSnapshotBeforeUpdate` → `componentDidUpdate`
+3. **Unmounting**: `componentWillUnmount`
